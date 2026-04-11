@@ -30,10 +30,8 @@ public class Main {
 
         System.out.println();
         System.out.println("A4 Prototype");
-        a4_prototype.RetetaMedicament reteta1 =
-                new a4_prototype.RetetaMedicament("Paracetamol", 10, 5);
-        a4_prototype.RetetaMedicament reteta2 =
-                (a4_prototype.RetetaMedicament) reteta1.copiaza();
+        a4_prototype.RetetaMedicament reteta1 = new a4_prototype.RetetaMedicament("Paracetamol", 10, 5);
+        a4_prototype.RetetaMedicament reteta2 = (a4_prototype.RetetaMedicament) reteta1.copiaza();
         reteta2.afisare();
 
         System.out.println();
@@ -87,5 +85,40 @@ public class Main {
                 fabricaPacienti.getPacient("Ion Popescu", "0711111111", "Bucuresti");
         pacientFly1.afiseazaInternare(new a10_flyweight.Internare(101, 1, 5));
         pacientFly2.afiseazaInternare(new a10_flyweight.Internare(203, 2, 3));
+
+        System.out.println();
+        System.out.println("A11 Strategy");
+        a11_strategy.PacientPlata pacientPlata = new a11_strategy.PacientPlata("Marin Elena");
+        pacientPlata.setModPlata(new a11_strategy.PlataCard());
+        pacientPlata.platesteNota(250);
+        pacientPlata.setModPlata(new a11_strategy.PlataCash());
+        pacientPlata.platesteNota(100);
+
+        System.out.println();
+        System.out.println("A12 Observer");
+        a12_observer.Spital spitalObserver = new a12_observer.Spital();
+        spitalObserver.adaugaObserver(new a12_observer.PacientAbonat("Ana"));
+        spitalObserver.adaugaObserver(new a12_observer.PacientAbonat("George"));
+        spitalObserver.trimiteNotificare("A aparut un virus nou in oras");
+
+        System.out.println();
+        System.out.println("A13 State");
+        a13_state.Pacient pacientState = new a13_state.Pacient("Ionescu Mihai");
+        pacientState.setStare(new a13_state.Internat());
+        pacientState.setStare(new a13_state.SubObservatie());
+        pacientState.setStare(new a13_state.Externat());
+
+        System.out.println();
+        System.out.println("A14 Template");
+        a14_template.InternareTemplate procesInternare = new a14_template.ProcesInternare();
+        procesInternare.internarePacient();
+
+        System.out.println();
+        System.out.println("A15 Command");
+        a15_command.Medic medicUrgenta = new a15_command.Medic();
+        a15_command.OperatorPrimire operator = new a15_command.OperatorPrimire();
+        operator.adaugaComanda(new a15_command.ComandaInternare(medicUrgenta));
+        operator.adaugaComanda(new a15_command.ComandaTratare(medicUrgenta));
+        operator.trimiteComenzi();
     }
 }
